@@ -10,22 +10,31 @@ interface IRoute extends RouteProps {
   isPrivate: boolean;
 }
 
+let Layout = AuthLayout;
+
 const route: React.FC<IRoute> = ({ component, signed, isPrivate, ...rest }) => {
+  //const [Layout, setLayout] = useState<React.FC>(AuthLayout);
+
   if (isPrivate && !signed) {
     return <Redirect to="/" />;
   }
 
-  const Layout = isPrivate ? DefaultLayout : AuthLayout;
-
-  const Component = component;
+  /* useEffect(() => {
+    const Layout = signed ? DefaultLayout : AuthLayout;
+  }, [signed]);
+ */
   return (
     <Route
       {...rest}
-      render={(props) => (
-        <Layout>
-          <Component {...props} />
-        </Layout>
-      )}
+      render={(props) => {
+        Layout = signed ? DefaultLayout : AuthLayout;
+        const Component = component;
+        return (
+          <Layout>
+            <Component {...props} />
+          </Layout>
+        );
+      }}
     />
   );
 };

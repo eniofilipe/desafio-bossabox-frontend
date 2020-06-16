@@ -18,7 +18,7 @@ export const Container = styled.div`
   border: 1px solid #ebeaed;
   border-radius: 5px;
 
-  div {
+  > div {
     display: flex;
     flex-direction: column;
 

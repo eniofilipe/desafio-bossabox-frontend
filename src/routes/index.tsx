@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Switch } from "react-router-dom";
-
-import Login from "../pages/Login";
 import Route from "./route";
 
-const routes: React.FC = () => {
+import AuthContext from "../context/auth";
+
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+
+const Routes: React.FC = () => {
+  const { signed } = useContext(AuthContext);
+
   return (
     <Switch>
       <Route
@@ -12,10 +17,16 @@ const routes: React.FC = () => {
         exact
         component={Login}
         isPrivate={false}
-        signed={false}
+        signed={signed}
+      />
+      <Route
+        path="/register"
+        component={Register}
+        isPrivate={false}
+        signed={signed}
       />
     </Switch>
   );
 };
 
-export default routes;
+export default Routes;

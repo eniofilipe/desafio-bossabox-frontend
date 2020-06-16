@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import { Container } from './styles';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -9,6 +8,7 @@ const Login: React.FC = () => {
   return (
     <div>
       <h1>VUTTR</h1>
+
       <input
         type="email"
         name="email"
